@@ -1,0 +1,36 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>images/archer.png</file>
+        <file>images/arrow.png</file>
+        <file>images/base.png</file>
+        <file>images/big_fire_ball.png</file>
+        <file>images/big_stone_bullet.png</file>
+        <file>images/bigArrow.png</file>
+        <file>images/boss.png</file>
+        <file>images/coin.png</file>
+        <file>images/fire_ball.png</file>
+        <file>images/fireball_tower.png</file>
+        <file>images/goblin.png</file>
+        <file>images/hammer.png</file>
+        <file>images/lvl_one_background.png</file>
+        <file>images/New_tower.png</file>
+        <file>images/stone_bullet.png</file>
+        <file>images/stone_tower.png</file>
+        <file>images/Tower.png</file>
+        <file>images/towerBuilder.png</file>
+        <file>images/preview.png</file>
+    </qresource>
+    <qresource prefix="/sounds">
+        <file>sounds/arrow_shot.wav</file>
+        <file>sounds/goblin_dead.wav</file>
+        <file>sounds/goblin_pain.wav</file>
+        <file>sounds/goblin_walking.wav</file>
+        <file>sounds/its_victory.mp3</file>
+        <file>sounds/loser.mp3</file>
+        <file>sounds/Not_enough_gold.wav</file>
+        <file>sounds/anger.wav</file>
+        <file>sounds/not_enough_gold_fUp.wav</file>
+        <file>sounds/Fireball.wav</file>
+        <file>sounds/stone_bullet.wav</file>
+    </qresource>
+</RCC>
