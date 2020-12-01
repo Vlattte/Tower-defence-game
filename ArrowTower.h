@@ -20,7 +20,7 @@ class ArrowTower: public QObject, public MainTower
 {
     Q_OBJECT
 public:
-    ArrowTower(upgrade_quality temp = {1100, 80, small},  QGraphicsItem* parent = 0);
+    ArrowTower(upgrade_quality temp = {1100, 80, small, none}, QGraphicsItem* parent = 0);
     virtual double distanseBetweenItems(QGraphicsItem * item);
     void shoot();
 

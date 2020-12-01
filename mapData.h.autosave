@@ -1,0 +1,6 @@
+#ifndef MAPDATA_H
+#define MAPDATA_H
+
+//info about any map: points of enemy path, tower points, pictures of map
+
+#endif // MAPDATA_H

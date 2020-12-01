@@ -1,5 +1,6 @@
 #include "Fireball.h"
-#include "Enemy.h"
+#include "Goblin.h"
+#include "Biggoblin.h"
 #include "game.h"
 
 #include <QPixmap>
@@ -39,16 +40,20 @@ FireBall::FireBall(bullet_types fire_ball_type, QGraphicsItem* parent)
        fireball_timer->start(20);
 }
 
+
+
+
 void FireBall::move()
 {
     //if fireball is out of screen
-    if (this->pos().x() >= 1280 || this->pos().x() <= 0
-      || this->pos().y() >= 720 || this->pos().y() <= 0)
+    if (this->pos().x() >= 1260 || this->pos().x() <= 10
+     || this->pos().y() >= 700 || this->pos().y() <= 10)
     {
         game->scene->removeItem(this);
         delete this;
     }
-    else{
+    else
+    {
         if (game->pause == 1)
         {
             int step = 30;
@@ -63,10 +68,18 @@ void FireBall::move()
             QList <QGraphicsItem *> colliding_items = collidingItems();
             for (int i = 0; i < colliding_items.size(); ++i)
             {
-                if (typeid(*(colliding_items[i])) == typeid(Enemy))
+                if (typeid(*(colliding_items[i])) == typeid(Goblin)
+                        || typeid(*(colliding_items[i])) == typeid(BigGoblin))
                 {
                     //check enemy health
-                    enemy_ptr = dynamic_cast <Enemy*> (colliding_items[i]);
+                    if (typeid(*(colliding_items[i])) == typeid(Goblin))
+                    {
+                        enemy_ptr = dynamic_cast <Goblin*> (colliding_items[i]);
+                    }
+                    else if (typeid(*(colliding_items[i])) == typeid(BigGoblin))
+                    {
+                        enemy_ptr = dynamic_cast <BigGoblin*> (colliding_items[i]);
+                    }
 
                     //change enemy's health
                     enemy_ptr->decreaseHealth(fire_damage);
@@ -75,7 +88,7 @@ void FireBall::move()
                     if (enemy_ptr->getHealth() <= 0)
                     {
                         game->scene->removeItem(colliding_items[i]);
-                        game->gold->increase(100);
+                        game->gold->increase(enemy_ptr->gold_for_kill);
                         game->chat->addText("Enemy was killed, HAAAAAAAAA");
 
                         //sound of goblin's death
@@ -89,10 +102,7 @@ void FireBall::move()
                         }
 
                         //clear memory
-                        enemy_ptr = nullptr;
                         delete enemy_ptr;
-
-                        delete colliding_items[i];
                     }
                     game->scene->removeItem(this);
 
@@ -101,7 +111,8 @@ void FireBall::move()
                     int count_enemies = 0;
                     for (int i = 0; i < list.size() - 1; ++i)
                     {
-                        if (typeid(*(list[i])) == typeid(Enemy))
+                        if (typeid(*(list[i])) == typeid(Goblin)
+                                || typeid(*(list[i])) == typeid(BigGoblin))
                         {
                             count_enemies++;
                         }
@@ -124,8 +135,6 @@ void FireBall::move()
                             game->wave_change_ability = true;
                         }
                     }
-
-
                     delete this;
                 }
             }

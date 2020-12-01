@@ -2,7 +2,8 @@
 #include "Arrow.h"
 #include "ArrowTower.h"
 #include "Tower.h"
-#include "Enemy.h"
+#include "Goblin.h"
+#include "Biggoblin.h"
 #include "Towerbuilder.h"
 #include "Base.h"
 #include "Health.h"
@@ -100,7 +101,7 @@ Game::Game() : QGraphicsView()
 
     while (index < 4)
     {
-        spawn_number[index] = 1 /*+ 1 * index*/;
+        spawn_number[index] = 10 + 5 * index;
         ++index;
     }
     index = 0;
@@ -147,9 +148,20 @@ void Game::spawn_simple_enemy()
         //spawn enemies
         if (spawn_number[index] > 0)
         {
-            Enemy * enemy = new Enemy();
-            scene->addItem(enemy);
-            spawn_number[index]--;
+            //every fifth enemy is Big Goblin
+            if (index > 1 && (spawn_number[index] % 5) == 0)
+            {
+                //spawning of big Goblin
+                BigGoblin * goblin = new BigGoblin();
+                scene->addItem(goblin);
+                spawn_number[index]--;
+            }
+            else
+            {
+                Goblin * enemy = new Goblin();
+                scene->addItem(enemy);
+                spawn_number[index]--;
+            }
         }
 
         //change wave
@@ -163,7 +175,7 @@ void Game::spawn_simple_enemy()
                 wave_change_ability = false;
             }
         }
-        }
+    }
 }
 
 

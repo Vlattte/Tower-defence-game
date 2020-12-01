@@ -25,14 +25,16 @@ private slots:
 
     void on_pushButton_3_clicked();
 
+    void on_pushButton_4_clicked();
+
 private:
     Ui::TowerUpgrade *ui;
     QMediaPlayer * not_enough_gold;
 
     upgrade_quality *temp_stats;
-    bool size_flag = true;
-    bool speed_flag = true;
-    bool shooting_range = true;
+    bool size_flag;
+    bool speed_flag;
+    bool range_flag;
 };
 
 #endif // TOWERUPGRADE_H

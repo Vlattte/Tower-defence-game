@@ -5,7 +5,8 @@
 #include <QMediaPlayer>
 #include <QObject>
 
-#include "Enemy.h"
+#include "Goblin.h"
+#include "Biggoblin.h"
 #include "Fireballtower.h"
 
 class FireBall: public QObject, public QGraphicsPixmapItem
@@ -18,7 +19,7 @@ public slots:
     void move();
 
 private:
-    Enemy * enemy_ptr = new Enemy();
+    Enemy * enemy_ptr;
     int fire_damage;
 
     QMediaPlayer * goblin_dead;

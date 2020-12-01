@@ -1,32 +1,28 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 
-#include <QObject>
-#include <QGraphicsPixmapItem>
-#include <QList>
 #include <QPointF>
-#include <QLabel>
+#include <QList>
 #include <QMediaPlayer>
+#include <QLabel>
+#include <QGraphicsItem>
 
 #include "EnemyPoints.h"
 
-class Enemy: public QObject, public QGraphicsPixmapItem
+class Enemy: public QGraphicsPixmapItem
 {
-            Q_OBJECT
 public:
-    Enemy(QGraphicsItem* parent = 0);
-    void rotate(QPointF point);
+    Enemy();
 
     void decreaseHealth(int damage);
     int getHealth() const;
 
     void chooseWay();
+    void rotate(QPointF point);
 
-public slots:
-   void move();
-   void closing();
+    int gold_for_kill;
 
-private:
+protected:
     QList<QPointF> list_of_points;
     QPointF destination;
 

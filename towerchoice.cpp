@@ -110,3 +110,9 @@ void TowerChoice::on_pushButton_3_clicked()
 
     close();
 }
+
+void TowerChoice::on_pushButton_4_clicked()
+{
+    this->close();
+    delete this;
+}

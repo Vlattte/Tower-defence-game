@@ -1,10 +1,19 @@
 #ifndef UPGRADES_H
 #define UPGRADES_H
 
+#include <QString>
+
 enum bullet_types
 {
     small,
     large
+};
+
+struct upgrade_status
+{
+   bool shooting_speed = false;
+   bool bullet_size = false;
+   bool shooting_range = false;
 };
 
 enum update_num
@@ -22,7 +31,7 @@ struct upgrade_quality
     int shooting_range;
     bullet_types bullet_size;
     update_num num;
-
+    upgrade_status is_upgraded;
 };
 
 

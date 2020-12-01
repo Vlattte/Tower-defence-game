@@ -13,12 +13,17 @@
         <file>images/goblin.png</file>
         <file>images/hammer.png</file>
         <file>images/lvl_one_background.png</file>
-        <file>images/New_tower.png</file>
+        <file>images/archer_tower.png</file>
         <file>images/stone_bullet.png</file>
         <file>images/stone_tower.png</file>
         <file>images/Tower.png</file>
         <file>images/towerBuilder.png</file>
         <file>images/preview.png</file>
+        <file>images/archer_tower_speeded_up.png</file>
+        <file>images/fireball_tower_speeded_up.png</file>
+        <file>images/stone_tower_speeded_up.png</file>
+        <file>images/guy_with_spear.png</file>
+        <file>images/wizard.png</file>
     </qresource>
     <qresource prefix="/sounds">
         <file>sounds/arrow_shot.wav</file>

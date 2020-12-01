@@ -25,9 +25,22 @@ FireBallTower::FireBallTower(upgrade_quality temp, QGraphicsItem* parent)
         Fireballtower.bullet_size = temp.bullet_size;
         Fireballtower.shooting_range = temp.shooting_range;
         Fireballtower.shooting_speed = temp.shooting_speed;
+        Fireballtower.num = temp.num;
+        Fireballtower.is_upgraded = temp.is_upgraded;
+
+        QString picName;
+        if (Fireballtower.num == speed)
+        {
+            picName = ":/images/images/fireball_tower_speeded_up.png";
+        }
+        //if no picture in picname, use default
+        if (Fireballtower.num == none)
+        {
+            picName = ":/images/images/fireball_tower.png";
+        }
     //========================================================================
         //set the picture of the tower
-        setPixmap(QPixmap(":/images/images/fireball_tower.png"));
+        setPixmap(QPixmap(picName));
 
     //--------------------------atack_area_as_a_polygon---------------------------
         //creating atack area
@@ -77,14 +90,14 @@ void FireBallTower::shoot()
     if (game->pause == 1)
     {
         //make an arrow and rotate to the target
-        FireBall * arrow = new FireBall(Fireballtower.bullet_size);
-        arrow->setPos(x()+45, y()+50);
+        FireBall * fireball = new FireBall(Fireballtower.bullet_size);
+        fireball->setPos(x()+45, y()+50);
         QLineF line(QPointF(x(), y()), QPointF(target.x(), target.y()));
 
         double angle = (-1) * line.angle();
-        arrow->setRotation(angle);
+        fireball->setRotation(angle);
 
-        game->scene->addItem(arrow);
+        game->scene->addItem(fireball);
 
         //sound of shooting
         if (fire_sound->state() == QMediaPlayer::PlayingState)
@@ -126,28 +139,39 @@ void FireBallTower::aquire()
         has_target = false;
         return;
     }
-    else{
-    double closest_target = 300;
-    QPointF closest_point = QPointF(0, 0);
-
-    for(int i = 0; i < colliders.size(); ++i)
+    else
     {
-        Enemy * enemy_check = dynamic_cast<Enemy*>(colliders[i]);
-        if (enemy_check)
+        double closest_target = 300;
+        QPointF closest_point = QPointF(0, 0);
+
+        for(int i = 0; i < colliders.size(); ++i)
         {
-            double distToEnemy = distanseBetweenItems(enemy_check);
-            if (closest_target > distToEnemy)
+            Enemy * enemy_check;
+
+            if (typeid (*(colliders[i])) == typeid(Goblin))
+                enemy_check = dynamic_cast<Goblin*>(colliders[i]);
+            else if (typeid (*(colliders[i])) == typeid(BigGoblin))
+                enemy_check = dynamic_cast<BigGoblin*>(colliders[i]);
+            else
+                enemy_check = nullptr;
+
+            if (enemy_check != nullptr)
             {
-                closest_target = distToEnemy;
-                closest_point = colliders[i]->pos();
-                has_target = true;
+                double distToEnemy = distanseBetweenItems(enemy_check);
+
+                if (closest_target > distToEnemy)
+                {
+                    closest_target = distToEnemy;
+                    closest_point = colliders[i]->pos();
+                    has_target = true;
+                }
             }
         }
-    }
-    if (has_target == true)
-    {
-        target = closest_point;
-        shoot();
-    }
+
+        if (has_target == true)
+        {
+            target = closest_point;
+            shoot();
+        }
     }
 }

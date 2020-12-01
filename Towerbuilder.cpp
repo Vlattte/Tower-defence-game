@@ -57,22 +57,26 @@ void TowerBuilder::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
             delete this;
         }
+        else
+        {
+            window.close();
+        }
     }
 
-    if (!game->build && event->button() == Qt::LeftButton)
+    if (/*!game->build && */ event->button() == Qt::LeftButton)
     {
         if(game->gold->getGold() >= 200)
         {
                  game->chat->addText("Simple tower was built, my Lord");
 
-                 game->build = new ArrowTower();
+                 ArrowTower * tower = new ArrowTower();
                  game->gold->decrease(200);
 
                  //set the position for tower
-                 game->build->setPos(x() + line.dx(), y() + line.dy());
-                 game->scene->addItem(game->build);
+                 tower->setPos(x() + line.dx(), y() + line.dy());
+                 game->scene->addItem(tower);
 
-                 game->build = nullptr;
+//                 game->build = nullptr;
 
                  //delete this tower builder
                  game->scene->removeItem(this);

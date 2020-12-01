@@ -20,6 +20,7 @@ UpdateHelper::UpdateHelper(upgrade_quality tower_stats, QGraphicsItem* parent) :
 }
 
 void UpdateHelper::rebuilder()
+
 {
     //pup pup pop pop
     //destroy tower and create upgraded one
@@ -66,6 +67,7 @@ void UpdateHelper::rebuilder()
             delete this;
         }
     }
+
 }
 
 

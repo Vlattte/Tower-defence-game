@@ -1,7 +1,8 @@
 #include "ArrowTower.h"
 #include "Arrow.h"
 #include "game.h"
-#include "Enemy.h"
+#include "Goblin.h"
+#include "Biggoblin.h"
 #include "Towerupgrade.h"
 
 #include <QGraphicsItem>
@@ -28,9 +29,23 @@ ArrowTower::ArrowTower(upgrade_quality temp, QGraphicsItem* parent): QObject(), 
     simpleTower.bullet_size = temp.bullet_size;
     simpleTower.shooting_range = temp.shooting_range;
     simpleTower.shooting_speed = temp.shooting_speed;
+    simpleTower.num = temp.num;
+    simpleTower.is_upgraded = temp.is_upgraded;
+
+    QString picName;
+
+    if (simpleTower.num == speed)
+    {
+        picName = ":/images/images/archer_tower_speeded_up.png";
+    }
+    //if no picture in picname, use default
+    else if (simpleTower.num == none)
+    {
+        picName = ":/images/images/archer_tower.png";
+    }
 //========================================================================
     //set the picture of the tower
-    setPixmap(QPixmap(":/images/images/New_tower.png"));
+    setPixmap(QPixmap(picName));
 
 //--------------------------atack_area_as_a_polygon---------------------------
     //creating atack area
@@ -129,28 +144,40 @@ void ArrowTower::aquire()
         has_target = false;
         return;
     }
-    else{
-    double closest_target = 300;
-    QPointF closest_point = QPointF(0, 0);
-
-    for(int i = 0; i < colliders.size(); ++i)
+    else
     {
-        Enemy * enemy_check = dynamic_cast<Enemy*>(colliders[i]);
-        if (enemy_check)
+        double closest_target = 300;
+        QPointF closest_point = QPointF(0, 0);
+
+        for(int i = 0; i < colliders.size(); ++i)
         {
-            double distToEnemy = distanseBetweenItems(enemy_check);
-            if (closest_target > distToEnemy)
+
+            Enemy * enemy_check;
+
+            if (typeid (*(colliders[i])) == typeid(Goblin))
+                enemy_check = dynamic_cast<Goblin*>(colliders[i]);
+            else if (typeid (*(colliders[i])) == typeid(BigGoblin))
+                enemy_check = dynamic_cast<BigGoblin*>(colliders[i]);
+            else
+                enemy_check = nullptr;
+
+            if (enemy_check != nullptr)
             {
-                closest_target = distToEnemy;
-                closest_point = colliders[i]->pos();
-                has_target = true;
+                double distToEnemy = distanseBetweenItems(enemy_check);
+
+                if (closest_target > distToEnemy)
+                {
+                    closest_target = distToEnemy;
+                    closest_point = colliders[i]->pos();
+                    has_target = true;
+                }
             }
         }
-    }
-    if (has_target == true)
-    {
-        target = closest_point;
-        shoot();
-    }
+
+        if (has_target == true)
+        {
+            target = closest_point;
+            shoot();
+        }
     }
 }

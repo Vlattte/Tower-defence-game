@@ -10,7 +10,8 @@
 #include "Stonetower.h"
 #include "Stonebullet.h"
 #include "game.h"
-#include "Enemy.h"
+#include "Goblin.h"
+#include "Biggoblin.h"
 
 
 extern Game * game;
@@ -26,9 +27,22 @@ StoneTower::StoneTower(upgrade_quality temp, QGraphicsItem* parent)
         stonetower.bullet_size = temp.bullet_size;
         stonetower.shooting_range = temp.shooting_range;
         stonetower.shooting_speed = temp.shooting_speed;
+        stonetower.num = temp.num;
+        stonetower.is_upgraded = temp.is_upgraded;
+
+        QString picName;
+        if (stonetower.num == speed)
+        {
+            picName = ":/images/images/stone_tower_speeded_up.png";
+        }
+        //if no picture in picname, use default
+        if (stonetower.num == none)
+        {
+            picName = ":/images/images/stone_tower.png";
+        }
     //========================================================================
         //set the picture of the tower
-        setPixmap(QPixmap(":/images/images/stone_tower.png"));
+        setPixmap(QPixmap(picName));
 
     //--------------------------atack_area_as_a_polygon---------------------------
         //creating atack area
@@ -133,8 +147,16 @@ void StoneTower::aquire()
 
     for(int i = 0; i < colliders.size(); ++i)
     {
-        Enemy * enemy_check = dynamic_cast<Enemy*>(colliders[i]);
-        if (enemy_check)
+        Enemy * enemy_check;
+
+        if (typeid (*(colliders[i])) == typeid(Goblin))
+            enemy_check = dynamic_cast<Goblin*>(colliders[i]);
+        else if (typeid (*(colliders[i])) == typeid(BigGoblin))
+            enemy_check = dynamic_cast<BigGoblin*>(colliders[i]);
+        else
+            enemy_check = nullptr;
+
+        if (enemy_check != nullptr)
         {
             double distToEnemy = distanseBetweenItems(enemy_check);
             if (closest_target > distToEnemy)

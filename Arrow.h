@@ -5,7 +5,7 @@
 #include <QMediaPlayer>
 #include <QObject>
 
-#include "Enemy.h"
+#include "Goblin.h"
 #include "ArrowTower.h"
 
 class Arrow: public QObject, public QGraphicsPixmapItem
@@ -18,7 +18,7 @@ public slots:
     void move();
 
 private:
-    Enemy * enemy_ptr = new Enemy();
+    Enemy * enemy_ptr;
     int arrow_damage;
 
     QMediaPlayer * goblin_dead;

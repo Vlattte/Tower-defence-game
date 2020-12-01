@@ -13,10 +13,12 @@ SOURCES += \
     Arrow.cpp \
     ArrowTower.cpp \
     Base.cpp \
+    Biggoblin.cpp \
     Chat.cpp \
     Enemy.cpp \
     Fireball.cpp \
     Freballtower.cpp \
+    Goblin.cpp \
     Health.cpp \
     Stonebullet.cpp \
     Stonetower.cpp \
@@ -34,11 +36,13 @@ HEADERS += \
     Arrow.h \
     ArrowTower.h \
     Base.h \
+    Biggoblin.h \
     Chat.h \
     Enemy.h \
     EnemyPoints.h \
     Fireball.h \
     Fireballtower.h \
+    Goblin.h \
     Health.h \
     Stonebullet.h \
     Stonetower.h \
@@ -50,6 +54,7 @@ HEADERS += \
     game.h \
     gold.h \
     mainwindow.h \
+    mapData.h \
     towerchoice.h
 
 # Default rules for deployment.

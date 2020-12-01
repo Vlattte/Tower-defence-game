@@ -19,7 +19,7 @@ public slots:
     void move();
 
 private:
-    Enemy * enemy_ptr = new Enemy();
+    Enemy * enemy_ptr;
     int stone_damage;
 
     QMediaPlayer * goblin_dead;
