@@ -32,8 +32,11 @@ void Enemy::chooseWay()
     //================random=enemy=move=======================
     int lowest = 1, highest = 2;
     int range = (highest-lowest) + 1;
-    random_dest = lowest + int(range * (rand() / (RAND_MAX + 1.0)));
-    way_num = lowest + int(range * (rand() / (RAND_MAX + 1.0)));
+    random_dest = int(rand() % 2) + 1;
+    way_num = int(rand() % 2) + 1;
+
+//    random_dest = lowest + int(range * (rand() / (RAND_MAX + 1.0)));
+//    way_num = lowest + int(range * (rand() / (RAND_MAX + 1.0)));
     //========================================================
 }
 

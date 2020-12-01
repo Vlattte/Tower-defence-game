@@ -7,10 +7,8 @@
 extern Game * game;
 extern MainWindow * window;
 
-#include <QPointF>
 #include <QLineF>
 #include <QVector>
-#include <QPixmap>
 #include <qmath.h>
 #include <QTimer>
 #include <QMessageBox>
@@ -53,27 +51,11 @@ BigGoblin::BigGoblin(QGraphicsItem* parent)
 
     if (random_dest == 1)
     {
-       FP.a = {500, 205};
-       FP.b = {520, 230};
-       FP.c = {715, 230};
-       FP.d = {785, 270};
-       FP.e = {790, 275};
-       FP.f = {795, 278};
-       FP.g = {795, 490};
-       FP.h = {999, 490};
-       FP.i = {1000, 490};
+          FP = game->settings.variety.bottom_way;
     }
     else
     {
-        FP.a = {500, 160};
-        FP.b = {510, 130};
-        FP.c = {530, 110};
-        FP.d = {550, 90};
-        FP.e = {600, 65};
-        FP.f = {990, 65};
-        FP.g = {1035, 95};
-        FP.h = {1070, 150};
-        FP.i = {1070, 500};
+          FP = game->settings.variety.upper_way;
     }
 
     if (way_num == 1)
@@ -214,8 +196,9 @@ void BigGoblin::move()
                         }
                         else
                         {
+
                             game->close();
-                            game = new Game();
+                            game = new Game(game->mn);
                             game->show();
                         }
                     }

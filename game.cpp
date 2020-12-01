@@ -9,6 +9,7 @@
 #include "Health.h"
 #include "gold.h"
 
+
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QTimer>
@@ -18,8 +19,12 @@
 
 extern int pause;
 
-Game::Game() : QGraphicsView()
+Game::Game(number_of_map map_num) : QGraphicsView()
 {  
+    //set map settings
+    settings.set_varieties(map_num);
+    mn = map_num;
+
     //create and set the scene
     scene = new QGraphicsScene();
     setScene(scene);
@@ -30,15 +35,17 @@ Game::Game() : QGraphicsView()
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    setBackgroundBrush(QBrush(QImage(":/images/images/lvl_one_background")));
+    //set background picture
+    setBackgroundBrush(QBrush(QImage(settings.variety.map_name)));
 
+    //its useless, might be used in future updates
     cursor = nullptr;
     build = nullptr;
     setMouseTracking(true);
 
     //add the base
     Base *base = new Base();
-    base->setPos(1180, 490);
+    base->setPos(settings.variety.base_point);
     scene->addItem(base);
 
     //add base's health
@@ -49,6 +56,7 @@ Game::Game() : QGraphicsView()
     gold->setPos(1100, 0);
     scene->addItem(gold);
 
+    //add image of coin
     QImage image(":/images/images/coin.png");
     QGraphicsPixmapItem* coin = new QGraphicsPixmapItem(QPixmap::fromImage(image));
     coin->setPos(1080, 5);
@@ -58,40 +66,51 @@ Game::Game() : QGraphicsView()
     chat->setPos(470, 600);
     scene->addItem(chat);
 
-    //add the builder
-    TowerBuilder *builder  = new TowerBuilder(),
-                 *builder1 = new TowerBuilder(),
-                 *builder2 = new TowerBuilder(),
-                 *builder3 = new TowerBuilder(),
-                 *builder4 = new TowerBuilder(),
-                 *builder5 = new TowerBuilder(),
-                 *builder6 = new TowerBuilder(),
-                 *builder7 = new TowerBuilder(),
-                 *builder8 = new TowerBuilder(),
-                 *builder9 = new TowerBuilder();
+    //add the builders
+    TowerBuilder *builder0  = new TowerBuilder(),
+                     *builder1 = new TowerBuilder(),
+                     *builder2 = new TowerBuilder(),
+                     *builder3 = new TowerBuilder(),
+                     *builder4 = new TowerBuilder(),
+                     *builder5 = new TowerBuilder(),
+                     *builder6 = new TowerBuilder(),
+                     *builder7 = new TowerBuilder(),
+                     *builder8 = new TowerBuilder(),
+                     *builder9 = new TowerBuilder();
 
-    builder->setPos(660, 400);
-    scene->addItem(builder);
-    builder1->setPos(340, 75);
-    scene->addItem(builder1);
-    builder2->setPos(600, 190);
-    scene->addItem(builder2);
-    builder3->setPos(900, 200);
-    scene->addItem(builder3);
-    builder4->setPos(900, 410);
-    scene->addItem(builder4);
-    builder5->setPos(55, 240);
-    scene->addItem(builder5);
-    builder6->setPos(360, 250);
-    scene->addItem(builder6);
-    builder7->setPos(210, 425);
-    scene->addItem(builder7);
-    builder8->setPos(1150, 410);
-    scene->addItem(builder8);
-    builder9->setPos(1150, 200);
-    scene->addItem(builder9);
+        builder0->setPos(settings.variety.tbp[0]);
+        scene->addItem(builder0);
+        builder1->setPos(settings.variety.tbp[1]);
+        scene->addItem(builder1);
+        builder2->setPos(settings.variety.tbp[2]);
+        scene->addItem(builder2);
+        builder3->setPos(settings.variety.tbp[3]);
+        scene->addItem(builder3);
+        builder4->setPos(settings.variety.tbp[4]);
+        scene->addItem(builder4);
+        builder5->setPos(settings.variety.tbp[5]);
+        scene->addItem(builder5);
+        builder6->setPos(settings.variety.tbp[6]);
+        scene->addItem(builder6);
+        builder7->setPos(settings.variety.tbp[7]);
+        scene->addItem(builder7);
+        builder8->setPos(settings.variety.tbp[8]);
+        scene->addItem(builder8);
+        builder9->setPos(settings.variety.tbp[9]);
+        scene->addItem(builder9);
 
-    //addition
+
+//    TowerBuilder** builder = new TowerBuilder*[10];
+
+//    for (int i = 0; i < 10; ++i)
+//    {
+//        qDebug() << "here";
+//        builder[i]->setPos(settings.variety.tbp[i]);
+//        scene->addItem(builder[i]);
+//    }
+
+
+    //addition(easter egg)
     was_i_already_angry = false;
     //========
 

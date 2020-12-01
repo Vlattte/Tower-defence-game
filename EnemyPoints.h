@@ -18,4 +18,6 @@ struct how_enemy_moves
    QPoint i;
 };
 
+
+
 #endif // ENEMYPOINTS_H

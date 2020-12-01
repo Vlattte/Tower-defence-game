@@ -30,6 +30,7 @@ SOURCES += \
     gold.cpp \
     main.cpp \
     mainwindow.cpp \
+    mapinfo.cpp \
     towerchoice.cpp
 
 HEADERS += \
@@ -54,7 +55,7 @@ HEADERS += \
     game.h \
     gold.h \
     mainwindow.h \
-    mapData.h \
+    mapinfo.h \
     towerchoice.h
 
 # Default rules for deployment.

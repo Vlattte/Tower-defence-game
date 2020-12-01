@@ -29,8 +29,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
+    number_of_map map_num = first_map;
     setToolButtonStyle(Qt::ToolButtonStyle::ToolButtonTextUnderIcon);
     this->close();
-    game = new Game();
+    game = new Game(map_num);
     game->show();
 }
