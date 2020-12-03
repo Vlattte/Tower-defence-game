@@ -5,7 +5,7 @@
 
 Gold::Gold(QGraphicsItem * parent)
 {
-    player_gold = 600;
+    player_gold = 1200;
     setPlainText(QString("Gold: ") + QString::number(player_gold));
     setDefaultTextColor(Qt::yellow);
     setFont(QFont("Helvetica [Cronyx]", 16));

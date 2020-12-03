@@ -27,11 +27,21 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_grass_button_clicked()
 {
-    number_of_map map_num = first_map;
-    setToolButtonStyle(Qt::ToolButtonStyle::ToolButtonTextUnderIcon);
     this->close();
-    game = new Game(map_num);
+    game = new Game(first_map);
     game->show();
+}
+
+void MainWindow::on_sand_button_clicked()
+{
+    this->close();
+    game = new Game(second_map);
+    game->show();
+}
+
+void MainWindow::on_quit_button_clicked()
+{
+     close();
 }

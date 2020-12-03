@@ -4,7 +4,7 @@
 
 Health::Health(QGraphicsItem * parent) : QGraphicsTextItem(parent)
 {
-    base_health = 10;
+    base_health = 20;
     setPlainText(QString("Base: ") + QString::number(base_health));
     setDefaultTextColor(Qt::darkCyan);
     setFont(QFont("Helvetica [Cronyx]", 16));

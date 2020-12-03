@@ -1,5 +1,5 @@
-#ifndef GOBLIN_H
-#define GOBLIN_H
+#ifndef SKELETON_H
+#define SKELETON_H
 
 #include <QObject>
 #include <QGraphicsPixmapItem>
@@ -11,16 +11,21 @@
 #include "EnemyPoints.h"
 #include "Enemy.h"
 
-class Goblin: public QObject, public Enemy
+class Skeleton: public QObject, public Enemy
 {
-            Q_OBJECT
+    Q_OBJECT
 public:
-    Goblin(QGraphicsItem* parent = 0);
-    ~Goblin();
+    Skeleton(QGraphicsItem * parent = 0);
+    ~Skeleton();
+
+    void shoot();
+
+    QMediaPlayer * bone_sound;
 
 public slots:
+   void aquire();
    void move();
    void closing();
 };
 
-#endif // GOBLIN_H
+#endif // SKELETON_H

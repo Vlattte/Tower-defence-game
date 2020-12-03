@@ -24,6 +24,12 @@
         <file>images/stone_tower_speeded_up.png</file>
         <file>images/guy_with_spear.png</file>
         <file>images/wizard.png</file>
+        <file>images/lvl_two_background.png</file>
+        <file>images/info.png</file>
+        <file>images/pause.png</file>
+        <file>images/bone.png</file>
+        <file>images/skeleton.png</file>
+        <file>images/cross.png</file>
     </qresource>
     <qresource prefix="/sounds">
         <file>sounds/arrow_shot.wav</file>
@@ -37,5 +43,10 @@
         <file>sounds/not_enough_gold_fUp.wav</file>
         <file>sounds/Fireball.wav</file>
         <file>sounds/stone_bullet.wav</file>
+        <file>sounds/big_goblin_death.wav</file>
+        <file>sounds/big_goblin_pain.wav</file>
+        <file>sounds/bone_sound.wav</file>
+        <file>sounds/skeleton_death.wav</file>
+        <file>sounds/skeleton_pain.wav</file>
     </qresource>
 </RCC>

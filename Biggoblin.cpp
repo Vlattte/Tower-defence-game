@@ -1,5 +1,6 @@
 #include "Biggoblin.h"
 #include "Goblin.h"
+#include "Skeleton.h"
 #include "Base.h"
 #include "game.h"
 #include "mainwindow.h"
@@ -16,9 +17,9 @@ extern MainWindow * window;
 BigGoblin::BigGoblin(QGraphicsItem* parent)
 {
     //========================set=sounds==========================
-    goblin_pain = new QMediaPlayer();
-    goblin_pain->setMedia(QUrl("qrc:/sounds/sounds/goblin_pain.wav"));
-    goblin_pain->setVolume(20);
+    enemy_pain = new QMediaPlayer();
+    enemy_pain->setMedia(QUrl("qrc:/sounds/sounds/big_goblin_pain.wav"));
+    enemy_pain->setVolume(20);
 
     //set sounds of victory
     victory = new QMediaPlayer();
@@ -60,17 +61,20 @@ BigGoblin::BigGoblin(QGraphicsItem* parent)
 
     if (way_num == 1)
     {
-        setPos(0, 100);
-        list_of_points << QPoint(80,100) << QPoint(155, 140) << QPoint(420,140)
-                       << QPoint(485, 175) << FP.a << FP.b << FP.c << FP.d << FP.e << FP.f
-                       << FP.g << FP.h << FP.i << QPoint(1080, 510) << QPoint(1240, 510);
+        setPos(FP.start);
+        list_of_points << FP.a0 << FP.a1 << FP.a2
+                       << FP.a3 << FP.a << FP.b << FP.c << FP.d << FP.e << FP.f
+                       << FP.g << FP.h << FP.i << FP.j << game->settings.variety.finish;
     }
     else if (way_num == 2)
     {
-        setPos(0, 415);
-        list_of_points << QPoint (0, 430) << QPoint (75, 480) << QPoint (400, 480)
-                       << QPoint (475, 510) << QPoint (1240, 510);
+        for (int i = 0; i < 5; ++i)
+        {
+            list_of_points << game->settings.variety.special_point[i]; //easy bottom way
+        }
+        list_of_points << game->settings.variety.finish;
     }
+
     point_index = 0;
     destination = list_of_points[0];
     rotate(destination);
@@ -85,7 +89,7 @@ BigGoblin::BigGoblin(QGraphicsItem* parent)
 
 BigGoblin::~BigGoblin()
 {
-    delete goblin_pain;
+    delete enemy_pain;
     delete victory;
     delete lose;
 }
@@ -171,8 +175,9 @@ void BigGoblin::move()
                     int count_enemies = 0;
                     for (int i = 0; i < list.size() - 1; ++i)
                     {
-                        if (typeid(*(list[i])) == typeid(Goblin)
-                                || typeid(*(list[i])) == typeid(BigGoblin))
+                        if (typeid(*(list[i])) == typeid(Goblin) ||
+                            typeid(*(list[i])) == typeid(BigGoblin)||
+                            typeid(*(list[i])) == typeid (Skeleton))
                         {
                             count_enemies++;
                             qDebug() << "Enemies boss: " << count_enemies;
@@ -186,17 +191,18 @@ void BigGoblin::move()
                         lose->play();
 
                         //game over event
-                        QMessageBox::StandardButton reply =
+                        game->reply =
                         QMessageBox::question(game, "GAME OVER", "Would you like to try again?", QMessageBox::Yes | QMessageBox::No);
 
                         //ask for restarting the game
-                        if (reply == QMessageBox::No)
+                        if (game->reply == QMessageBox::No)
                         {
+                            game->scene->clear();
                             game->close();
                         }
                         else
                         {
-
+                            game->scene->clear();
                             game->close();
                             game = new Game(game->mn);
                             game->show();
@@ -214,6 +220,25 @@ void BigGoblin::move()
                             game->chat->addText("You are the best!!");
                             game->chat->addText("You saved all of us!!!");
                             game->chat->addText("Thank you for playing this game <3");
+
+                            //victory window with restart ability
+                            game->reply =
+                            QMessageBox::question(game, "Victory!", "Would you like to win again?",
+                                                  QMessageBox::Yes | QMessageBox::No);
+
+                            //ask for restarting the game
+                            if (game->reply == QMessageBox::No)
+                            {
+                                game->scene->clear();
+                                game->close();
+                            }
+                            else
+                            {
+                                game->scene->clear();
+                                game->close();
+                                game = new Game(game->mn);
+                                game->show();
+                            }
                         }
                         else
                         {

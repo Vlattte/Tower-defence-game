@@ -23,6 +23,7 @@ public:
     void shoot();
 
     void mousePressEvent (QGraphicsSceneMouseEvent * event);
+    bool is_any_upgrades();
 public slots:
     void aquire();
 

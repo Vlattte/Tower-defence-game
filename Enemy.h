@@ -26,7 +26,7 @@ protected:
     QList<QPointF> list_of_points;
     QPointF destination;
 
-    QMediaPlayer * goblin_pain;
+    QMediaPlayer * enemy_pain;
     QMediaPlayer * victory;
     QMediaPlayer * lose;
 

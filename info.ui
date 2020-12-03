@@ -1,0 +1,933 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Info</class>
+ <widget class="QDialog" name="Info">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>995</width>
+    <height>893</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>0</y>
+     <width>291</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 18pt &quot;Comic Sans MS&quot; rgb(5, 255, 5) ;
+text-decoration: underline;
+
+</string>
+   </property>
+   <property name="text">
+    <string>Info about the game</string>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>80</y>
+     <width>841</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QTableWidget
+{
+background-color: rgb(209, 209, 209);
+font: 8pt &quot;Comic Sans MS&quot;;
+}</string>
+   </property>
+   <property name="verticalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOff</enum>
+   </property>
+   <property name="horizontalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOff</enum>
+   </property>
+   <property name="rowCount">
+    <number>1</number>
+   </property>
+   <property name="columnCount">
+    <number>6</number>
+   </property>
+   <row>
+    <property name="text">
+     <string>arrow tower</string>
+    </property>
+   </row>
+   <column>
+    <property name="text">
+     <string>damage</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>updated damage</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>range</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>updated range</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>shooting speed</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>updated speed</string>
+    </property>
+   </column>
+   <item row="0" column="0">
+    <property name="text">
+     <string>              1</string>
+    </property>
+   </item>
+   <item row="0" column="1">
+    <property name="text">
+     <string>              2</string>
+    </property>
+   </item>
+   <item row="0" column="2">
+    <property name="text">
+     <string>             80</string>
+    </property>
+   </item>
+   <item row="0" column="3">
+    <property name="text">
+     <string>            120  </string>
+    </property>
+   </item>
+   <item row="0" column="4">
+    <property name="text">
+     <string> 1,1 arrow p/s</string>
+    </property>
+   </item>
+   <item row="0" column="5">
+    <property name="text">
+     <string>0.55 arrow p/s</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>60</y>
+     <width>91</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="res.qrc">:/images/images/archer_tower.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>170</y>
+     <width>91</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="res.qrc">:/images/images/stone_tower.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>180</y>
+     <width>841</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QTableWidget
+{
+background-color: rgb(209, 209, 209);
+font: 8pt &quot;Comic Sans MS&quot;;
+}</string>
+   </property>
+   <property name="verticalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOff</enum>
+   </property>
+   <property name="horizontalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOff</enum>
+   </property>
+   <property name="rowCount">
+    <number>1</number>
+   </property>
+   <property name="columnCount">
+    <number>6</number>
+   </property>
+   <row>
+    <property name="text">
+     <string>stone tower</string>
+    </property>
+   </row>
+   <column>
+    <property name="text">
+     <string>damage</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>updated damage</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>range</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>updated range</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>shooting speed</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>updated speed</string>
+    </property>
+   </column>
+   <item row="0" column="0">
+    <property name="text">
+     <string>              2</string>
+    </property>
+   </item>
+   <item row="0" column="1">
+    <property name="text">
+     <string>              3</string>
+    </property>
+   </item>
+   <item row="0" column="2">
+    <property name="text">
+     <string>            100</string>
+    </property>
+   </item>
+   <item row="0" column="3">
+    <property name="text">
+     <string>            150  </string>
+    </property>
+   </item>
+   <item row="0" column="4">
+    <property name="text">
+     <string> 1,3 stone p/s</string>
+    </property>
+   </item>
+   <item row="0" column="5">
+    <property name="text">
+     <string>0.65 stone p/s</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget_3">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>280</y>
+     <width>841</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QTableWidget
+{
+background-color: rgb(209, 209, 209);
+font: 8pt &quot;Comic Sans MS&quot;;
+}</string>
+   </property>
+   <property name="verticalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOff</enum>
+   </property>
+   <property name="horizontalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOff</enum>
+   </property>
+   <property name="rowCount">
+    <number>1</number>
+   </property>
+   <property name="columnCount">
+    <number>6</number>
+   </property>
+   <row>
+    <property name="text">
+     <string>stone tower</string>
+    </property>
+   </row>
+   <column>
+    <property name="text">
+     <string>damage</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>updated damage</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>range</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>updated range</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>shooting speed</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>updated speed</string>
+    </property>
+   </column>
+   <item row="0" column="0">
+    <property name="text">
+     <string>              3</string>
+    </property>
+   </item>
+   <item row="0" column="1">
+    <property name="text">
+     <string>              5</string>
+    </property>
+   </item>
+   <item row="0" column="2">
+    <property name="text">
+     <string>            60</string>
+    </property>
+   </item>
+   <item row="0" column="3">
+    <property name="text">
+     <string>            90</string>
+    </property>
+   </item>
+   <item row="0" column="4">
+    <property name="text">
+     <string> 1,3 fireball p/s</string>
+    </property>
+   </item>
+   <item row="0" column="5">
+    <property name="text">
+     <string>0.65 fireball p/s</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>260</y>
+     <width>81</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="res.qrc">:/images/images/fireball_tower.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>50</y>
+     <width>91</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 12pt &quot;Comic Sans MS&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Towers</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_6">
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>370</y>
+     <width>81</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 12pt &quot;Comic Sans MS&quot;;
+</string>
+   </property>
+   <property name="text">
+    <string>Enemies</string>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget_4">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>410</y>
+     <width>801</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QTableWidget
+{
+background-color: rgb(209, 209, 209);
+font: 8pt &quot;Comic Sans MS&quot;;
+}</string>
+   </property>
+   <property name="verticalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOff</enum>
+   </property>
+   <property name="horizontalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOff</enum>
+   </property>
+   <property name="rowCount">
+    <number>1</number>
+   </property>
+   <property name="columnCount">
+    <number>6</number>
+   </property>
+   <row>
+    <property name="text">
+     <string>goblin</string>
+    </property>
+   </row>
+   <column>
+    <property name="text">
+     <string>maximum damage</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>minimum damage</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>health</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>gold for kill</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>walking speed</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>spawn rate</string>
+    </property>
+   </column>
+   <item row="0" column="0">
+    <property name="text">
+     <string>              3</string>
+    </property>
+   </item>
+   <item row="0" column="1">
+    <property name="text">
+     <string>              1</string>
+    </property>
+   </item>
+   <item row="0" column="2">
+    <property name="text">
+     <string>             3</string>
+    </property>
+   </item>
+   <item row="0" column="3">
+    <property name="text">
+     <string>            50</string>
+    </property>
+   </item>
+   <item row="0" column="4">
+    <property name="text">
+     <string> 10 steps p/s</string>
+    </property>
+   </item>
+   <item row="0" column="5">
+    <property name="text">
+     <string>every 2.5 seconds</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget_5">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>500</y>
+     <width>831</width>
+     <height>112</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>841</width>
+     <height>120</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QTableWidget
+{
+background-color: rgb(209, 209, 209);
+font: 9pt &quot;Comic Sans MS&quot;;
+}</string>
+   </property>
+   <property name="verticalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOff</enum>
+   </property>
+   <property name="horizontalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOff</enum>
+   </property>
+   <property name="sizeAdjustPolicy">
+    <enum>QAbstractScrollArea::AdjustToContents</enum>
+   </property>
+   <property name="rowCount">
+    <number>1</number>
+   </property>
+   <property name="columnCount">
+    <number>6</number>
+   </property>
+   <attribute name="verticalHeaderMinimumSectionSize">
+    <number>80</number>
+   </attribute>
+   <attribute name="verticalHeaderDefaultSectionSize">
+    <number>80</number>
+   </attribute>
+   <attribute name="verticalHeaderHighlightSections">
+    <bool>false</bool>
+   </attribute>
+   <row>
+    <property name="text">
+     <string>big goblin</string>
+    </property>
+   </row>
+   <column>
+    <property name="text">
+     <string>maximum damage</string>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+     </font>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>minimum damage</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>health</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>gold for kill</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>walking speed</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>spawn rate</string>
+    </property>
+   </column>
+   <item row="0" column="0">
+    <property name="text">
+     <string>             20</string>
+    </property>
+   </item>
+   <item row="0" column="1">
+    <property name="text">
+     <string>              1</string>
+    </property>
+   </item>
+   <item row="0" column="2">
+    <property name="text">
+     <string>             20</string>
+    </property>
+   </item>
+   <item row="0" column="3">
+    <property name="text">
+     <string>           200</string>
+    </property>
+   </item>
+   <item row="0" column="4">
+    <property name="text">
+     <string> 3.33 steps p/s</string>
+    </property>
+   </item>
+   <item row="0" column="5">
+    <property name="text">
+     <string>after any 5th goblin after 2 wave</string>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="label_8">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>520</y>
+     <width>51</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="res.qrc">:/images/images/boss.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_9">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>740</y>
+     <width>151</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 12pt &quot;Comic Sans MS&quot;;
+
+</string>
+   </property>
+   <property name="text">
+    <string>Special buttons</string>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget_6">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>790</y>
+     <width>131</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QTableWidget
+{
+background-color: rgb(209, 209, 209);
+font: 9pt &quot;Comic Sans MS&quot;;
+}</string>
+   </property>
+   <attribute name="horizontalHeaderMinimumSectionSize">
+    <number>10</number>
+   </attribute>
+   <attribute name="horizontalHeaderDefaultSectionSize">
+    <number>70</number>
+   </attribute>
+   <attribute name="verticalHeaderDefaultSectionSize">
+    <number>40</number>
+   </attribute>
+   <row>
+    <property name="text">
+     <string>              </string>
+    </property>
+   </row>
+   <column>
+    <property name="text">
+     <string>space </string>
+    </property>
+   </column>
+   <item row="0" column="0">
+    <property name="text">
+     <string>   pause</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="label_10">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>800</y>
+     <width>51</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="res.qrc">:/images/images/pause.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget_8">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>790</y>
+     <width>131</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QTableWidget
+{
+background-color: rgb(209, 209, 209);
+font: 9pt &quot;Comic Sans MS&quot;;
+}</string>
+   </property>
+   <attribute name="horizontalHeaderMinimumSectionSize">
+    <number>10</number>
+   </attribute>
+   <attribute name="horizontalHeaderDefaultSectionSize">
+    <number>70</number>
+   </attribute>
+   <attribute name="verticalHeaderDefaultSectionSize">
+    <number>40</number>
+   </attribute>
+   <row>
+    <property name="text">
+     <string>             </string>
+    </property>
+   </row>
+   <column>
+    <property name="text">
+     <string>escape</string>
+    </property>
+   </column>
+   <item row="0" column="0">
+    <property name="text">
+     <string>     quit</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="label_11">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>800</y>
+     <width>55</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="res.qrc">:/images/images/cross.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget_7">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>630</y>
+     <width>821</width>
+     <height>112</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>841</width>
+     <height>120</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QTableWidget
+{
+background-color: rgb(209, 209, 209);
+font: 9pt &quot;Comic Sans MS&quot;;
+}</string>
+   </property>
+   <property name="verticalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOff</enum>
+   </property>
+   <property name="horizontalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOff</enum>
+   </property>
+   <property name="sizeAdjustPolicy">
+    <enum>QAbstractScrollArea::AdjustToContents</enum>
+   </property>
+   <property name="rowCount">
+    <number>1</number>
+   </property>
+   <property name="columnCount">
+    <number>6</number>
+   </property>
+   <attribute name="verticalHeaderMinimumSectionSize">
+    <number>80</number>
+   </attribute>
+   <attribute name="verticalHeaderDefaultSectionSize">
+    <number>80</number>
+   </attribute>
+   <attribute name="verticalHeaderHighlightSections">
+    <bool>false</bool>
+   </attribute>
+   <row>
+    <property name="text">
+     <string>skeleton</string>
+    </property>
+   </row>
+   <column>
+    <property name="text">
+     <string>maximum damage</string>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+     </font>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>minimum damage</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>health</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>gold for kill</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>walking speed</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>spawn rate</string>
+    </property>
+   </column>
+   <item row="0" column="0">
+    <property name="text">
+     <string>              1</string>
+    </property>
+   </item>
+   <item row="0" column="1">
+    <property name="text">
+     <string>              1</string>
+    </property>
+   </item>
+   <item row="0" column="2">
+    <property name="text">
+     <string>              2</string>
+    </property>
+   </item>
+   <item row="0" column="3">
+    <property name="text">
+     <string>           50</string>
+    </property>
+   </item>
+   <item row="0" column="4">
+    <property name="text">
+     <string> 20 steps p/s</string>
+    </property>
+   </item>
+   <item row="0" column="5">
+    <property name="text">
+     <string>after any 3th goblin after 1 wave</string>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="label_12">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>660</y>
+     <width>51</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="res.qrc">:/images/images/skeleton.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>410</y>
+     <width>41</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="res.qrc">:/images/images/goblin.png</pixmap>
+   </property>
+  </widget>
+ </widget>
+ <resources>
+  <include location="res.qrc"/>
+ </resources>
+ <connections/>
+</ui>

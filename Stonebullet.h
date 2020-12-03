@@ -15,6 +15,8 @@ class StoneBullet: public QObject, public QGraphicsPixmapItem
 public:
     StoneBullet(bullet_types stone_type = small, QGraphicsItem* parent = 0);
 
+    void play_death_sound(Enemy * enemy_ptr);
+
 public slots:
     void move();
 
@@ -22,7 +24,7 @@ private:
     Enemy * enemy_ptr;
     int stone_damage;
 
-    QMediaPlayer * goblin_dead;
+    QMediaPlayer * enemy_death_sound;
     QMediaPlayer * victory;
 };
 

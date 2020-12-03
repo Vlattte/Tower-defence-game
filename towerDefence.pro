@@ -14,12 +14,17 @@ SOURCES += \
     ArrowTower.cpp \
     Base.cpp \
     Biggoblin.cpp \
+    Bone.cpp \
     Chat.cpp \
     Enemy.cpp \
     Fireball.cpp \
     Freballtower.cpp \
     Goblin.cpp \
     Health.cpp \
+    Info.cpp \
+    InfoIcon.cpp \
+    Pausebutton.cpp \
+    Skeleton.cpp \
     Stonebullet.cpp \
     Stonetower.cpp \
     Tower.cpp \
@@ -38,6 +43,7 @@ HEADERS += \
     ArrowTower.h \
     Base.h \
     Biggoblin.h \
+    Bone.h \
     Chat.h \
     Enemy.h \
     EnemyPoints.h \
@@ -45,6 +51,10 @@ HEADERS += \
     Fireballtower.h \
     Goblin.h \
     Health.h \
+    Info.h \
+    InfoIcon.h \
+    Pausebutton.h \
+    Skeleton.h \
     Stonebullet.h \
     Stonetower.h \
     Tower.h \
@@ -70,6 +80,7 @@ DISTFILES += \
     towerBuilder.png
 
 FORMS += \
+    info.ui \
     mainwindow.ui \
     towerchoice.ui \
     towerupgrade.ui

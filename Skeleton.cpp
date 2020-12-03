@@ -1,9 +1,10 @@
-#include "Goblin.h"
-#include "Biggoblin.h"
 #include "Skeleton.h"
+#include "Biggoblin.h"
+#include "Goblin.h"
 #include "Base.h"
 #include "game.h"
 #include "mainwindow.h"
+#include "Bone.h"
 
 extern Game * game;
 extern MainWindow * window;
@@ -17,12 +18,16 @@ extern MainWindow * window;
 #include <QMessageBox>
 
 
-Goblin::Goblin(QGraphicsItem* parent)
+Skeleton::Skeleton(QGraphicsItem * parent)
 {
     //========================set=sounds==========================
     enemy_pain = new QMediaPlayer();
-    enemy_pain->setMedia(QUrl("qrc:/sounds/sounds/goblin_pain.wav"));
+    enemy_pain->setMedia(QUrl("qrc:/sounds/sounds/skeleton_pain.wav"));
     enemy_pain->setVolume(20);
+
+    bone_sound = new QMediaPlayer();
+    bone_sound->setMedia(QUrl("qrc:/sounds/sounds/bone_sound.wav"));
+    bone_sound->setVolume(20);
 
     //set sounds of victory
     victory = new QMediaPlayer();
@@ -34,12 +39,12 @@ Goblin::Goblin(QGraphicsItem* parent)
     //============================================================
 
     //============================basic=values====================
-    enemy_health = 3;
+    enemy_health = 2;
     gold_for_kill = 50;
     //============================================================
 
     //================set=the=picture=of=the=enemy================
-    setPixmap(QPixmap(":/images/images/goblin.png"));
+    setPixmap(QPixmap(":/images/images/skeleton.png"));
     //============================================================
 
     //===============show=health=of=enemy=above=his=head==========
@@ -56,6 +61,10 @@ Goblin::Goblin(QGraphicsItem* parent)
     //====================rotate=to=the=point=====================
     chooseWay();
 
+    //points before finish
+    int finishX = game->settings.variety.finish.x() - 130;
+    int finishY = game->settings.variety.finish.y();
+
     if (random_dest == 1)
     {
           FP = game->settings.variety.bottom_way;
@@ -70,7 +79,7 @@ Goblin::Goblin(QGraphicsItem* parent)
         setPos(FP.start);
         list_of_points << FP.a0 << FP.a1 << FP.a2
                        << FP.a3 << FP.a << FP.b << FP.c << FP.d << FP.e << FP.f
-                       << FP.g << FP.h << FP.i << FP.j << game->settings.variety.finish;
+                       << FP.g << FP.h << FP.i << FP.j << QPointF(finishX, finishY);
     }
     else if (way_num == 2)
     {
@@ -81,10 +90,12 @@ Goblin::Goblin(QGraphicsItem* parent)
         if (game->mn == second_map)
         {
             FP = game->settings.variety.bottom_way;
-            list_of_points << FP.a << FP.b << FP.c << FP.d << FP.e << FP.f
+            list_of_points << FP.b << FP.c << FP.d << FP.e << FP.f
                            << FP.g << FP.h << FP.i << FP.j;
         }
-        list_of_points << game->settings.variety.finish;
+
+        //stop before base to get ability to throw bone
+        list_of_points << QPointF(finishX, finishY);
     }
 
     point_index = 0;
@@ -95,18 +106,65 @@ Goblin::Goblin(QGraphicsItem* parent)
     //=====================make=the=enemy=move====================
     QTimer * move_timer = new QTimer(this);
     connect (move_timer, SIGNAL(timeout()), this, SLOT(move()));
-    move_timer->start(100);
+    move_timer->start(50);
+    //============================================================
+
+    //==========================shooting==========================
+    QTimer * shoot_timer = new QTimer();
+    connect(shoot_timer, SIGNAL(timeout()), this, SLOT(aquire()));
+    shoot_timer->start(2000);
     //============================================================
 }
 
-Goblin::~Goblin()
+Skeleton::~Skeleton()
 {
     delete enemy_pain;
     delete victory;
     delete lose;
 }
 
-void Goblin::move()
+void Skeleton::shoot()
+{
+    int baseX = game->settings.variety.base_point.x();
+    int baseY = game->settings.variety.base_point.y() + 20;
+    QPointF base_point = QPointF(baseX, baseY);
+
+    if (game->pause == 1)
+    {
+        //make an arrow and rotate to the target
+        Bone * bone = new Bone();
+        bone->setPos(x(), y());
+        QLineF line(QPointF(x(), y()), base_point);
+
+        double angle = (-1) * line.angle();
+        bone->setRotation(angle);
+
+        game->scene->addItem(bone);
+
+        //sound of shooting
+        if (bone_sound->state() == QMediaPlayer::PlayingState)
+        {
+            bone_sound->setPosition(0);
+        }
+        else if (bone_sound->state() == QMediaPlayer::StoppedState)
+        {
+            bone_sound->play();
+        }
+    }
+}
+
+void Skeleton::aquire()
+{
+    //points before finish
+    int finishX = game->settings.variety.finish.x() - 130;
+    int finishY = game->settings.variety.finish.y();
+
+    if (destination == QPointF(finishX, finishY) )
+     shoot();
+
+}
+
+void Skeleton::move()
 {
     if (game->pause == 1)
     {
@@ -152,12 +210,13 @@ void Goblin::move()
                     for (int i = 0; i < list.size() - 1; ++i)
                     {
                         if (typeid(*(list[i])) == typeid(Goblin) ||
-                            typeid(*(list[i])) == typeid(BigGoblin)||
+                            typeid(*(list[i])) == typeid(BigGoblin) ||
                             typeid(*(list[i])) == typeid (Skeleton))
                         {
                             count_enemies++;
                         }
                     }
+
                     //if you lose, game will be finished
                     if (game->base_health->getHealth() <= 0)
                     {
@@ -231,7 +290,7 @@ void Goblin::move()
     }
 }
 
-void Goblin::closing()
+void Skeleton::closing()
 {
-    game->close();
+     game->close();
 }

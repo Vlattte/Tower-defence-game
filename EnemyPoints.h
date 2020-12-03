@@ -7,6 +7,11 @@
 
 struct how_enemy_moves
 {
+   QPoint start;
+   QPoint a0;
+   QPoint a1;
+   QPoint a2;
+   QPoint a3;
    QPoint a;
    QPoint b;
    QPoint c;
@@ -16,6 +21,8 @@ struct how_enemy_moves
    QPoint g;
    QPoint h;
    QPoint i;
+   QPoint j;
+   QPoint k;
 };
 
 

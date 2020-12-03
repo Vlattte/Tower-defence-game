@@ -12,6 +12,7 @@
 #include "game.h"
 #include "Goblin.h"
 #include "Biggoblin.h"
+#include "Skeleton.h"
 
 
 extern Game * game;
@@ -115,19 +116,29 @@ void StoneTower::shoot()
 
 void StoneTower::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-    if (event->button() == Qt::RightButton)
+    if (!is_any_upgrades())
     {
-        //change position of the window
-        QPointF point = mapToScene(event->pos());
-        int windowX = point.x() + 190;
-        int windowY = point.y() + 90;
+        if (event->button() == Qt::RightButton)
+        {
+            //change position of the window
+            QPointF point = mapToScene(event->pos());
+            int windowX = point.x() + 190;
+            int windowY = point.y() + 90;
 
-        //set the window
-        TowerUpgrade window(stonetower);
-        window.move(windowX, windowY);
-        window.setModal(true);
-        window.exec();
+            //set the window
+            TowerUpgrade window(stonetower);
+            window.move(windowX, windowY);
+            window.setModal(true);
+            window.exec();
+        }
     }
+}
+
+bool StoneTower::is_any_upgrades()
+{
+    return (stonetower.is_upgraded.bullet_size    &&
+            stonetower.is_upgraded.shooting_range &&
+            stonetower.is_upgraded.shooting_speed);
 }
 
 void StoneTower::aquire()
@@ -153,6 +164,8 @@ void StoneTower::aquire()
             enemy_check = dynamic_cast<Goblin*>(colliders[i]);
         else if (typeid (*(colliders[i])) == typeid(BigGoblin))
             enemy_check = dynamic_cast<BigGoblin*>(colliders[i]);
+        else if (typeid (*(colliders[i])) == typeid(Skeleton))
+            enemy_check = dynamic_cast<Skeleton*>(colliders[i]);
         else
             enemy_check = nullptr;
 

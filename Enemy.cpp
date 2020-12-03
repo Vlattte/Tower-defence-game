@@ -12,13 +12,13 @@ void Enemy::decreaseHealth(int damage)
     health_label->setText(QString::number(enemy_health));
 
     //sound of goblins death
-    if (goblin_pain->state() == QMediaPlayer::PlayingState)
+    if (enemy_pain->state() == QMediaPlayer::PlayingState)
     {
-        goblin_pain->setPosition(0);
+        enemy_pain->setPosition(0);
     }
-    else if (goblin_pain->state() == QMediaPlayer::StoppedState)
+    else if (enemy_pain->state() == QMediaPlayer::StoppedState)
     {
-        goblin_pain->play();
+        enemy_pain->play();
     }
 }
 

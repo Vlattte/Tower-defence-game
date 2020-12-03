@@ -39,10 +39,10 @@ void TowerBuilder::mousePressEvent(QGraphicsSceneMouseEvent *event)
         int windowY = point.y() + 150;
 
         //set the window
-        TowerChoice window;
-        window.move(windowX, windowY);
-        window.setModal(true);
-        window.exec();
+        TowerChoice * window = new TowerChoice();
+        window->move(windowX, windowY);
+        window->setModal(true);
+        window->exec();
 
         if (game->build != nullptr)
         {
@@ -59,7 +59,7 @@ void TowerBuilder::mousePressEvent(QGraphicsSceneMouseEvent *event)
         }
         else
         {
-            window.close();
+            window->close();
         }
     }
 

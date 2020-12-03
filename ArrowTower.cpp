@@ -3,6 +3,7 @@
 #include "game.h"
 #include "Goblin.h"
 #include "Biggoblin.h"
+#include "Skeleton.h"
 #include "Towerupgrade.h"
 
 #include <QGraphicsItem>
@@ -118,19 +119,29 @@ void ArrowTower::shoot()
 
 void ArrowTower::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-     if (event->button() == Qt::RightButton)
-     {
-         //change position of the window
-         QPointF point = mapToScene(event->pos());
-         int windowX = point.x() + 190;
-         int windowY = point.y() + 90;
+    if (!is_any_upgrades())
+    {
+        if (event->button() == Qt::RightButton)
+        {
+            //change position of the window
+            QPointF point = mapToScene(event->pos());
+            int windowX = point.x() + 190;
+            int windowY = point.y() + 90;
 
-         //set the window
-         TowerUpgrade window(simpleTower);
-         window.move(windowX, windowY);
-         window.setModal(true);
-         window.exec();
-     }
+            //set the window
+            TowerUpgrade *window = new TowerUpgrade(simpleTower);
+            window->move(windowX, windowY);
+            window->setModal(true);
+            window->exec();
+        }
+    }
+}
+
+bool ArrowTower::is_any_upgrades()
+{
+    return (simpleTower.is_upgraded.bullet_size    &&
+            simpleTower.is_upgraded.shooting_range &&
+            simpleTower.is_upgraded.shooting_speed);
 }
 
 void ArrowTower::aquire()
@@ -158,6 +169,8 @@ void ArrowTower::aquire()
                 enemy_check = dynamic_cast<Goblin*>(colliders[i]);
             else if (typeid (*(colliders[i])) == typeid(BigGoblin))
                 enemy_check = dynamic_cast<BigGoblin*>(colliders[i]);
+            else if (typeid (*(colliders[i])) == typeid(Skeleton))
+                enemy_check = dynamic_cast<Skeleton*>(colliders[i]);
             else
                 enemy_check = nullptr;
 
@@ -176,6 +189,10 @@ void ArrowTower::aquire()
 
         if (has_target == true)
         {
+            int pointX =  closest_point.x() - 15;
+            int pointY =  closest_point.y() - 10;
+            closest_point = QPointF(pointX, pointY);
+
             target = closest_point;
             shoot();
         }

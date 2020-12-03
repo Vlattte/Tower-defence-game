@@ -1,6 +1,7 @@
 #include "Stonebullet.h"
 #include "Goblin.h"
 #include "Biggoblin.h"
+#include "Skeleton.h"
 #include "game.h"
 
 #include <QPixmap>
@@ -8,15 +9,15 @@
 #include <qmath.h>
 
 #include <QDebug>
+#include <QMessageBox>
 
 extern Game * game;
 
 StoneBullet::StoneBullet(bullet_types stone_type, QGraphicsItem* parent)
 {
 //========================set=sounds===========================
-    goblin_dead = new QMediaPlayer();
-    goblin_dead->setMedia(QUrl("qrc:/sounds/sounds/goblin_dead.wav"));
-    goblin_dead->setVolume(40);
+    enemy_death_sound = new QMediaPlayer();
+    enemy_death_sound->setVolume(40);
 
     //set sounds of victory
     victory = new QMediaPlayer();
@@ -43,6 +44,37 @@ StoneBullet::StoneBullet(bullet_types stone_type, QGraphicsItem* parent)
    stone_timer->start(20);
 }
 
+void StoneBullet::play_death_sound(Enemy *enemy_ptr)
+{
+    /////////////////////////////////////////////////////////////////////////////////
+    if (typeid(*(enemy_ptr)) == typeid(Goblin))
+    {
+        //sound of goblin's death
+        enemy_death_sound->setMedia(QUrl("qrc:/sounds/sounds/goblin_dead.wav"));
+    }
+    else if (typeid(*(enemy_ptr)) == typeid(BigGoblin))
+    {
+        //sound of big goblin's death
+        enemy_death_sound->setMedia(QUrl("qrc:/sounds/sounds/big_goblin_death.wav"));
+    }
+    else if (typeid(*(enemy_ptr)) == typeid(Skeleton))
+    {
+        //sound of skeleton's death
+        enemy_death_sound->setMedia(QUrl("qrc:/sounds/sounds/skeleton_death.wav"));
+    }
+    /////////////////////////////////////////////////////////////////////////////////
+
+    //play the sound
+    if (enemy_death_sound->state() == QMediaPlayer::PlayingState)
+    {
+        enemy_death_sound->setPosition(0);
+    }
+    else if (enemy_death_sound->state() == QMediaPlayer::StoppedState)
+    {
+        enemy_death_sound->play();
+    }
+}
+
 void StoneBullet::move()
 {
     //if arrow is out of screen
@@ -65,11 +97,11 @@ void StoneBullet::move()
 
             //kill the enemy and the bullet if they collide
             QList <QGraphicsItem *> colliding_items = collidingItems();
-
             for (int i = 0; i < colliding_items.size(); ++i)
             {
-                if (typeid(*(colliding_items[i])) == typeid(Goblin)
-                        || typeid(*(colliding_items[i])) == typeid(BigGoblin))
+                if ((typeid(*(colliding_items[i])) == typeid(Goblin) ||
+                     typeid(*(colliding_items[i])) == typeid(BigGoblin)) ||
+                     typeid(*(colliding_items[i])) == typeid(Skeleton))
                 {
                     //check enemy health
                     if (typeid(*(colliding_items[i])) == typeid(Goblin))
@@ -80,6 +112,10 @@ void StoneBullet::move()
                     {
                         enemy_ptr = dynamic_cast <BigGoblin*> (colliding_items[i]);
                     }
+                    else if (typeid(*(colliding_items[i])) == typeid(Skeleton))
+                    {
+                        enemy_ptr = dynamic_cast <Skeleton*> (colliding_items[i]);
+                    }
 
                     //change enemy's health
                     enemy_ptr->decreaseHealth(stone_damage);
@@ -87,23 +123,16 @@ void StoneBullet::move()
 
                     if (enemy_ptr->getHealth() <= 0)
                     {
-                        game->scene->removeItem(colliding_items[i]);
+                        play_death_sound(enemy_ptr);
+                        if (colliding_items[i]->scene())
+                            game->scene->removeItem(colliding_items[i]);
                         game->gold->increase(enemy_ptr->gold_for_kill);
-                        game->chat->addText("Enemy was killed, HAAAAAAAAA");
-
-                        //sound of goblin's death
-                        if (goblin_dead->state() == QMediaPlayer::PlayingState)
-                        {
-                            goblin_dead->setPosition(0);
-                        }
-                        else if (goblin_dead->state() == QMediaPlayer::StoppedState)
-                        {
-                            goblin_dead->play();
-                        }
 
                         //clear memory
-                        delete enemy_ptr;
+                         if (enemy_ptr)
+                            delete enemy_ptr;
                     }
+
                     game->scene->removeItem(this);
 
                     //count amount of enemies on scene
@@ -111,8 +140,9 @@ void StoneBullet::move()
                     int count_enemies = 0;
                     for (int i = 0; i < list.size() - 1; ++i)
                     {
-                        if (typeid(*(list[i])) == typeid(Goblin)
-                                || typeid(*(list[i])) == typeid(BigGoblin))
+                        if (typeid(*(list[i])) == typeid(Goblin) ||
+                            typeid(*(list[i])) == typeid(BigGoblin) ||
+                            typeid (*(list[i])) == typeid(Skeleton))
                         {
                             count_enemies++;
                         }
@@ -129,6 +159,26 @@ void StoneBullet::move()
                             game->chat->addText("You are the best!!");
                             game->chat->addText("You saved all of us!!!");
                             game->chat->addText("Thank you for playing this game <3");
+
+                            //restart window
+                            game->reply =
+                            QMessageBox::question(game, "Victory!", "Would you like to win again?",
+                                                  QMessageBox::Yes | QMessageBox::No);
+
+                            //ask for restarting the game
+                            if (game->reply == QMessageBox::No)
+                            {
+                                game->scene->clear();
+                                game->close();
+                            }
+                            else
+                            {
+                                game->scene->clear();
+                                game->close();
+                                game = new Game(game->mn);
+                                game->show();
+                            }
+
                         }
                         else
                         {

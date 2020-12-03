@@ -4,10 +4,13 @@
 #include "Tower.h"
 #include "Goblin.h"
 #include "Biggoblin.h"
+#include "Skeleton.h"
 #include "Towerbuilder.h"
 #include "Base.h"
 #include "Health.h"
 #include "gold.h"
+#include "InfoIcon.h"
+#include "Pausebutton.h"
 
 
 #include <QGraphicsScene>
@@ -38,15 +41,27 @@ Game::Game(number_of_map map_num) : QGraphicsView()
     //set background picture
     setBackgroundBrush(QBrush(QImage(settings.variety.map_name)));
 
+    ///////////////////////////////////////////////
     //its useless, might be used in future updates
     cursor = nullptr;
     build = nullptr;
     setMouseTracking(true);
+    ///////////////////////////////////////////////
 
     //add the base
     Base *base = new Base();
     base->setPos(settings.variety.base_point);
     scene->addItem(base);
+
+    //add info icon
+    InfoIcon * info = new InfoIcon();
+    scene->addItem(info);
+    info->setPos(1200,600);
+
+    //add pause button
+    PauseButton * pause_button = new PauseButton();
+    scene->addItem(pause_button);
+    pause_button->setPos(1200, 650);
 
     //add base's health
     base_health->setPos(0, 0);
@@ -104,7 +119,6 @@ Game::Game(number_of_map map_num) : QGraphicsView()
 
 //    for (int i = 0; i < 10; ++i)
 //    {
-//        qDebug() << "here";
 //        builder[i]->setPos(settings.variety.tbp[i]);
 //        scene->addItem(builder[i]);
 //    }
@@ -158,6 +172,10 @@ void Game::keyPressEvent(QKeyEvent *event)
     {
         pause = pause * -1;
     }
+    if (event->key() == Qt::Key_Escape)
+    {
+        close();
+    }
 }
 
 void Game::spawn_simple_enemy()
@@ -173,6 +191,12 @@ void Game::spawn_simple_enemy()
                 //spawning of big Goblin
                 BigGoblin * goblin = new BigGoblin();
                 scene->addItem(goblin);
+                spawn_number[index]--;
+            }
+            else if (index > 0 && (spawn_number[index] % 3) == 0)
+            {
+                Skeleton * skeletonchik = new Skeleton();
+                scene->addItem(skeletonchik);
                 spawn_number[index]--;
             }
             else

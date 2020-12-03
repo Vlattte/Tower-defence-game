@@ -14,17 +14,43 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="sand_button">
     <property name="geometry">
      <rect>
       <x>280</x>
-      <y>110</y>
+      <y>150</y>
       <width>131</width>
       <height>61</height>
      </rect>
     </property>
     <property name="text">
-     <string>Start the game</string>
+     <string>desert sand storm</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="grass_button">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>80</y>
+      <width>131</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>green grass valley</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="quit_button">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>220</y>
+      <width>131</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>quit</string>
     </property>
    </widget>
   </widget>

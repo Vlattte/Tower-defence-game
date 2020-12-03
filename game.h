@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include <QGraphicsView>
+#include <QMessageBox>
 #include <QMouseEvent>
 #include <QObject>
 #include <QLabel>
@@ -40,8 +41,10 @@ public:
 
     bool was_i_already_angry;
 
+    QMessageBox::StandardButton reply;
+
     number_of_map mn;         //map number for other classes
-    map_settings settings;  //all map varieties
+    map_settings settings;    //all map varieties
 public slots:
     void spawn_simple_enemy();
 

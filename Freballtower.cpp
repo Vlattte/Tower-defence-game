@@ -6,6 +6,9 @@
 #include <QLineF>
 #include <QTimer>
 
+#include "Skeleton.h"
+#include "Goblin.h"
+#include "Biggoblin.h"
 #include "Towerupgrade.h"
 #include "Fireballtower.h"
 #include "Fireball.h"
@@ -113,19 +116,29 @@ void FireBallTower::shoot()
 
 void FireBallTower::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-    if (event->button() == Qt::RightButton)
+    if (!is_any_upgrades())
     {
-        //change position of the window
-        QPointF point = mapToScene(event->pos());
-        int windowX = point.x() + 190;
-        int windowY = point.y() + 90;
+        if (event->button() == Qt::RightButton)
+        {
+            //change position of the window
+            QPointF point = mapToScene(event->pos());
+            int windowX = point.x() + 190;
+            int windowY = point.y() + 90;
 
-        //set the window
-        TowerUpgrade window(Fireballtower);
-        window.move(windowX, windowY);
-        window.setModal(true);
-        window.exec();
+            //set the window
+            TowerUpgrade window(Fireballtower);
+            window.move(windowX, windowY);
+            window.setModal(true);
+            window.exec();
+        }
     }
+}
+
+bool FireBallTower::is_any_upgrades()
+{
+    return (Fireballtower.is_upgraded.bullet_size    &&
+            Fireballtower.is_upgraded.shooting_range &&
+            Fireballtower.is_upgraded.shooting_speed);
 }
 
 void FireBallTower::aquire()
@@ -152,6 +165,8 @@ void FireBallTower::aquire()
                 enemy_check = dynamic_cast<Goblin*>(colliders[i]);
             else if (typeid (*(colliders[i])) == typeid(BigGoblin))
                 enemy_check = dynamic_cast<BigGoblin*>(colliders[i]);
+            else if (typeid (*(colliders[i])) == typeid(Skeleton))
+                enemy_check = dynamic_cast<Skeleton*>(colliders[i]);
             else
                 enemy_check = nullptr;
 
