@@ -27,6 +27,8 @@ private slots:
 
     void on_pushButton_4_clicked();
 
+    void on_pushButton_5_clicked();
+
 private:
     Ui::TowerUpgrade *ui;
     QMediaPlayer * not_enough_gold;

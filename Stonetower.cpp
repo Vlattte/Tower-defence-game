@@ -30,6 +30,7 @@ StoneTower::StoneTower(upgrade_quality temp, QGraphicsItem* parent)
         stonetower.shooting_speed = temp.shooting_speed;
         stonetower.num = temp.num;
         stonetower.is_upgraded = temp.is_upgraded;
+        stonetower.tower_price = temp.tower_price;
 
         QString picName;
         if (stonetower.num == speed)

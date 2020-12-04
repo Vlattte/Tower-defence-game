@@ -43,6 +43,9 @@ void TowerUpgrade::on_pushButton_clicked()
             temp_stats->shooting_speed /= 2;
             temp_stats->num = update_num::speed;
 
+            //increase the price of tower (half of the upgrade price)
+            temp_stats->tower_price += 150;
+
             //get money for upgrade
             game->gold->decrease(300);
 
@@ -91,6 +94,9 @@ void TowerUpgrade::on_pushButton_2_clicked()
             temp_stats->bullet_size = large;
             temp_stats->is_upgraded.bullet_size = true;
 
+            //increase the price of tower (half of the upgrade price)
+            temp_stats->tower_price += 150;
+
             //get money for upgrade
             game->gold->decrease(300);
 
@@ -136,6 +142,9 @@ void TowerUpgrade::on_pushButton_3_clicked()
             temp_stats->shooting_range *= 1.5;
             temp_stats->is_upgraded.shooting_range = true;
 
+            //increase the price of tower (half of the upgrade price)
+            temp_stats->tower_price += 150;
+
             //get money for upgrade
             game->gold->decrease(300);
 
@@ -172,5 +181,21 @@ void TowerUpgrade::on_pushButton_3_clicked()
 void TowerUpgrade::on_pushButton_4_clicked()
 {
     //cancel
+    close();
+}
+
+void TowerUpgrade::on_pushButton_5_clicked()
+{
+    //return half price of tower and it's upgrades
+    game->gold->increase(temp_stats->tower_price);
+    qDebug() << "Price: " << temp_stats->tower_price;
+
+    UpdateHelper * helper = new UpdateHelper(*temp_stats, true);
+    int hammerX = pos().x() - 200;
+    int hammerY = pos().y() - 120;
+
+    helper->setPos(hammerX, hammerY);
+    game->scene->addItem(helper);
+
     close();
 }

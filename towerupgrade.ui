@@ -55,14 +55,27 @@
   <widget class="QPushButton" name="pushButton_4">
    <property name="geometry">
     <rect>
-     <x>0</x>
+     <x>130</x>
      <y>50</y>
-     <width>261</width>
+     <width>131</width>
      <height>20</height>
     </rect>
    </property>
    <property name="text">
     <string>cancel</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_5">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>50</y>
+     <width>131</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>destroy</string>
    </property>
   </widget>
  </widget>

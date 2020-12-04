@@ -30,6 +30,7 @@ FireBallTower::FireBallTower(upgrade_quality temp, QGraphicsItem* parent)
         Fireballtower.shooting_speed = temp.shooting_speed;
         Fireballtower.num = temp.num;
         Fireballtower.is_upgraded = temp.is_upgraded;
+        Fireballtower.tower_price = temp.tower_price;
 
         QString picName;
         if (Fireballtower.num == speed)

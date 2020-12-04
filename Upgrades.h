@@ -30,6 +30,7 @@ struct upgrade_quality
     int shooting_speed;
     int shooting_range;
     bullet_types bullet_size;
+    int tower_price;
     update_num num;
     upgrade_status is_upgraded;
 };

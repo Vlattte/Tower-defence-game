@@ -18,7 +18,7 @@ class FireBallTower: public QObject, public MainTower
 {
     Q_OBJECT
 public:
-    FireBallTower(upgrade_quality temp = {1300, 60, small, none}, QGraphicsItem* parent = 0);
+    FireBallTower(upgrade_quality temp = {1300, 60, small, 200, none}, QGraphicsItem* parent = 0);
     virtual double distanseBetweenItems(QGraphicsItem * item);
     void shoot();
 

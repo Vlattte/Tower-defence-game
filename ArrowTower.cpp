@@ -32,6 +32,7 @@ ArrowTower::ArrowTower(upgrade_quality temp, QGraphicsItem* parent): QObject(), 
     simpleTower.shooting_speed = temp.shooting_speed;
     simpleTower.num = temp.num;
     simpleTower.is_upgraded = temp.is_upgraded;
+    simpleTower.tower_price = temp.tower_price;
 
     QString picName;
 
