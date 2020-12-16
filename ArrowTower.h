@@ -15,6 +15,8 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QMediaPlayer>
 
+#include "Towerupgrade.h"
+
 
 class ArrowTower: public QObject, public MainTower
 {
@@ -36,6 +38,8 @@ private:
     bool has_target;
     QMediaPlayer * arrow_sound;
     upgrade_quality simpleTower;
+
+    TowerUpgrade *window;
 };
 
 #endif // ARROWTOWER_H

@@ -524,7 +524,7 @@ font: 9pt &quot;Comic Sans MS&quot;;
     <enum>Qt::ScrollBarAlwaysOff</enum>
    </property>
    <property name="sizeAdjustPolicy">
-    <enum>QAbstractScrollArea::AdjustToContents</enum>
+    <enum>QAbstractScrollArea::AdjustIgnored</enum>
    </property>
    <property name="rowCount">
     <number>1</number>
@@ -678,7 +678,7 @@ font: 9pt &quot;Comic Sans MS&quot;;
    </attribute>
    <row>
     <property name="text">
-     <string>              </string>
+     <string/>
     </property>
    </row>
    <column>
@@ -735,7 +735,7 @@ font: 9pt &quot;Comic Sans MS&quot;;
    </attribute>
    <row>
     <property name="text">
-     <string>             </string>
+     <string/>
     </property>
    </row>
    <column>

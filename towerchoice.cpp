@@ -114,5 +114,4 @@ void TowerChoice::on_pushButton_3_clicked()
 void TowerChoice::on_pushButton_4_clicked()
 {
     this->close();
-    delete this;
 }

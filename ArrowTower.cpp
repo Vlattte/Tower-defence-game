@@ -125,12 +125,23 @@ void ArrowTower::mousePressEvent(QGraphicsSceneMouseEvent *event)
         if (event->button() == Qt::RightButton)
         {
             //change position of the window
-            QPointF point = mapToScene(event->pos());
-            int windowX = point.x() + 190;
-            int windowY = point.y() + 90;
+            QPointF p = mapToScene(event->pos());
+            int windowX = p.x() + 190;
+            int windowY = p.y() + 90;
+
+            //if clicked on tower
+            if (event->button() == Qt::LeftButton
+             || event->button() == Qt::RightButton)
+            {
+                QPointF point = event->scenePos();
+                if(!this->sceneBoundingRect().intersects(QRectF(point.x(), point.y(), 1, 1))){
+                    event->ignore();
+                    return;
+                }
+            }
 
             //set the window
-            TowerUpgrade *window = new TowerUpgrade(simpleTower);
+            window = new TowerUpgrade(simpleTower);
             window->move(windowX, windowY);
             window->setModal(true);
             window->exec();

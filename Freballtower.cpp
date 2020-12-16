@@ -121,6 +121,17 @@ void FireBallTower::mousePressEvent(QGraphicsSceneMouseEvent *event)
     {
         if (event->button() == Qt::RightButton)
         {
+            //if clicked on tower
+            if (event->button() == Qt::LeftButton
+             || event->button() == Qt::RightButton)
+            {
+                QPointF point = event->scenePos();
+                if(!this->sceneBoundingRect().intersects(QRectF(point.x(), point.y(), 1, 1))){
+                    event->ignore();
+                    return;
+                }
+            }
+
             //change position of the window
             QPointF point = mapToScene(event->pos());
             int windowX = point.x() + 190;

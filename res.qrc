@@ -48,5 +48,6 @@
         <file>sounds/bone_sound.wav</file>
         <file>sounds/skeleton_death.wav</file>
         <file>sounds/skeleton_pain.wav</file>
+        <file>sounds/destroy.wav</file>
     </qresource>
 </RCC>

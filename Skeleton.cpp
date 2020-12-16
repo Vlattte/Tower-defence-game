@@ -62,7 +62,7 @@ Skeleton::Skeleton(QGraphicsItem * parent)
     chooseWay();
 
     //points before finish
-    int finishX = game->settings.variety.finish.x() - 130;
+    int finishX = game->settings.variety.finish.x()/* - 130*/;
     int finishY = game->settings.variety.finish.y();
 
     if (random_dest == 1)
